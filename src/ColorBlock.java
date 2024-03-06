@@ -63,16 +63,14 @@ class ColorBlock{
     
     public boolean win(String[][] result){
         ColorBlock bResult = new ColorBlock(result);
-        boolean win = true;
         for(int i =0;i<bResult.tab.length-1;i++){
             for(int i2=0;i2<bResult.tab[i].length-1;i2++){
-                if(!this.tab[i][i2].getColor().equals(bResult.tab[i][i2].getColor())){
-                    win = false;
+                if(!this.tab[i][i2].getColorName().equals(result[i][i2])){
+                    return false;
                 }
             }
         }
-        
-        return win;
+        return true;
     }
 
     public void game(String[][] result){

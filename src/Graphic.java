@@ -35,7 +35,7 @@ public class Graphic extends JFrame {
 
             // Initialisation de la carte (exemple avec une carte simple)
             try {
-                lvl = fileToTab("ColorBlock/res/lvl" +(cptlvl+1)+".csv");
+                lvl = fileToTab("res/lvl" +(cptlvl+1)+".csv");
             }catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,12 +66,14 @@ public class Graphic extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("false");
-                    if(map.win(lvl) == true)
+                    
+                    if(map.win(lvl) == true){
                         cptlvl++;
                         changelvl();
                         System.out.println("true");
                     }
-            });
+                }
+    });
             win.setBounds(365,395,40,40);
 
             //mapPanel.add(buttonPanel);
@@ -89,7 +91,7 @@ public class Graphic extends JFrame {
 
     public void changelvl(){
         try {
-            lvl = fileToTab("ColorBlock/res/lvl" +(cptlvl+1)+".csv");
+            lvl = fileToTab("res/lvl" +(cptlvl+1)+".csv");
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,7 +109,7 @@ public class Graphic extends JFrame {
     }
 
     private Icon newIcon(int xtab, int ytab){
-        ImageIcon originalIcon = new ImageIcon("ColorBlock/img/paint" + map.tab[xtab][ytab].getColorName() + ".png");
+        ImageIcon originalIcon = new ImageIcon("img/paint" + map.tab[xtab][ytab].getColorName() + ".png");
 
         Image scaledImage = originalIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(scaledImage);
@@ -117,7 +119,7 @@ public class Graphic extends JFrame {
 
     private JButton createResizedButton(int xtab, int ytab ,int x, int y,boolean line) {
 
-        ImageIcon originalIcon = new ImageIcon("ColorBlock/img/paint" + map.tab[xtab][ytab].getColorName() + ".png");
+        ImageIcon originalIcon = new ImageIcon("img/paint" + map.tab[xtab][ytab].getColorName() + ".png");
 
         Image scaledImage = originalIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(scaledImage);
