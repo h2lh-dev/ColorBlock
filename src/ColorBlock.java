@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.Scanner;
 
 class ColorBlock{
@@ -48,13 +49,13 @@ class ColorBlock{
         return c;
     }
 
-    public void changeLineColor(String color, int idx){
+    public void changeLineColor(Color color, int idx){
         for(int i =0;i < this.tab[idx].length;i++){
             this.tab[idx][i].changeColor(color);
         }
     }
 
-    public void changeColumnColor(String color, int idx){
+    public void changeColumnColor(Color color, int idx){
         for(int i =0;i < this.tab[idx].length;i++){
             this.tab[i][idx].changeColor(color);
         }
@@ -70,7 +71,7 @@ class ColorBlock{
                 }
             }
         }
-
+        
         return win;
     }
 
@@ -110,6 +111,10 @@ class ColorBlock{
         }
         System.out.println(bResult);
         System.out.println("Félicitations, tu as gagné en " + nbCoups + " coups");
+    }
+
+    public Block getBlock(int x,int y){
+        return this.tab[y][x];
     }
 
 }

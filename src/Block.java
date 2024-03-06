@@ -1,23 +1,14 @@
-class Block {
-    
-    // Codes ANSI pour les couleurs du texte
-    public static final String RESET = "\u001B[0m";
-    public static final String BLACK = "\u001B[30m";
-    public static final String RED = "\u001B[31m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String YELLOW = "\u001B[33m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String PURPLE = "\u001B[35m";
-    public static final String CYAN = "\u001B[36m";
-    public static final String WHITE = "\u001B[37m";
-    public static final String ORANGE = "\u001B[38;2;255;165;0m";
+import java.awt.Color;
 
-    private String color;
+class Block {
+
+    private Color color;
     private Boolean pinceau;
 
     public Block(){
-        this.color = WHITE;
+        this.color = Color.WHITE;
         this.pinceau = false;
+
     }
 
     public Block(String color,Boolean pinceau){
@@ -25,48 +16,61 @@ class Block {
         this.pinceau = pinceau;
     }
 
-    public void changeColor(String newColor){
-        this.color = modColor(newColor);
+    public void changeColor(Color color){
+        this.color = color;
     }
 
-    public static String modColor(String couleur) {
+    public Color modColor(String couleur) {
         switch (couleur) {
             case "YELLOW":
-            case YELLOW:
-                return YELLOW;
+                return Color.YELLOW;
             case "ORANGE":
-            case ORANGE :
-                return ORANGE;
+                return Color.ORANGE;
             case "RED":
-            case RED:
-                return RED;
-            case "GREEN":
-            case GREEN: 
-                return GREEN;
-            case "PURPLE":
-            case PURPLE:
-                return PURPLE;
+                return Color.RED;
+            case "GREEN": 
+                return Color.GREEN;
+            case "MAGENTA":
+                return Color.MAGENTA;
             case "WHITE":
-            case WHITE:
-                return WHITE;
+                return Color.WHITE;
             case "BLUE":
-            case BLUE:
-                return BLUE;
+                return Color.BLUE;
             default:
-                return RESET;
+                return Color.BLACK;
         }
-    }
-    
-    public String toString(){
-        if(this.pinceau == true){
-            return this.color + "I" + RESET;
-        }
-        return this.color + "#" + RESET;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
+
+    public String getColorName() {
+        // Compare la couleur avec les constantes prédéfinies de Color
+        if (this.color.equals(Color.RED)) {
+            return "RED";
+        } else if (this.color.equals(Color.GREEN)) {
+            return "GREEN";
+        } else if (this.color.equals(Color.BLUE)) {
+            return "BLUE";
+        } else if (this.color.equals(Color.YELLOW)) {
+            return "YELLOW";
+        } else if (this.color.equals(Color.BLACK)) {
+            return "BLACK";
+        } else if (this.color.equals(Color.WHITE)) {
+            return "WHITE";
+        } else if (this.color.equals(Color.ORANGE)) {
+            return "ORANGE";
+        } else if (this.color.equals(Color.PINK)) {
+            return "PINK";
+        } else if (this.color.equals(Color.GRAY)) {
+            return "GRAY";
+        } 
+        else {
+            return "UNKNOWN";
+        }
+    }
+      
 
     public boolean getPinceau(){
         return pinceau;
