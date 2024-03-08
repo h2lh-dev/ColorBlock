@@ -20,24 +20,27 @@ class Block {
         this.color = color;
     }
 
+   
     public Color modColor(String couleur) {
         switch (couleur) {
-            case "YELLOW":
-                return Color.YELLOW;
-            case "ORANGE":
-                return Color.ORANGE;
-            case "RED":
-                return Color.RED;
-            case "GREEN": 
-                return Color.GREEN;
-            case "MAGENTA":
-                return Color.MAGENTA;
-            case "WHITE":
-                return Color.WHITE;
             case "BLUE":
                 return Color.BLUE;
+            case "CYAN":
+                return Color.CYAN;
+            case "GREEN":
+                return Color.GREEN;
+            case "MAGENTA": 
+                return Color.MAGENTA;
+            case "ORANGE":
+                return Color.ORANGE;
+            case "PINK":
+                return Color.PINK;
+            case "RED":
+                return Color.RED;
+            case "YELLOW":
+                return Color.YELLOW;
             default:
-                return Color.BLACK;
+                return Color.RED;
         }
     }
 
@@ -55,10 +58,10 @@ class Block {
             return "BLUE";
         } else if (this.color.equals(Color.YELLOW)) {
             return "YELLOW";
-        } else if (this.color.equals(Color.BLACK)) {
-            return "BLACK";
-        } else if (this.color.equals(Color.WHITE)) {
-            return "WHITE";
+        } else if (this.color.equals(Color.CYAN)) {
+            return "CYAN";
+        } else if (this.color.equals(Color.MAGENTA)) {
+            return "MAGENTA";
         } else if (this.color.equals(Color.ORANGE)) {
             return "ORANGE";
         } else if (this.color.equals(Color.PINK)) {

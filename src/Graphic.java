@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 
@@ -18,6 +19,7 @@ public class Graphic extends JFrame {
     private String[][] lvl;
     private int nblvl = 1;
     private int cptlvl = 0;
+    static Random random = new Random();
 
     private JButton button1;
     private JButton button2;
@@ -40,6 +42,8 @@ public class Graphic extends JFrame {
                 e.printStackTrace();
             }
             
+            lvl = rdStrings();
+
             map = new ColorBlock(3,lvl);
 
             // Créer un panneau personnalisé pour afficher la carte et le joueur
@@ -95,6 +99,8 @@ public class Graphic extends JFrame {
         }catch (IOException e) {
             e.printStackTrace();
         }
+
+
         map = new ColorBlock(3,lvl);
         
         mapPanel.repaint();
@@ -179,8 +185,12 @@ public class Graphic extends JFrame {
                 return Color.WHITE;
             case "BLUE":
                 return Color.BLUE;
+            case "PINK":
+                return Color.PINK;
+            case "CYAN":
+                return Color.CYAN;
             default:
-                return Color.BLACK;
+                return Color.CYAN;
         }
     }
 
@@ -206,5 +216,45 @@ public class Graphic extends JFrame {
         }
         
     }
+
+    public String[][] rdStrings(){
+        String[][] lvl = new String[4][4];
+        for(int i = 0; i< 4; i++){
+            System.out.println("test");
+            for(int i2 = 0; i2< 4 ;i2++){
+                System.out.println("test2");
+                if(i2 == lvl[i].length-1 || i == lvl.length-1 ){
+                    lvl[i][i2] = randomPencil();
+                }else{
+                    lvl[i][i2] = "RED";
+                }
+            }    
+        }
+        return lvl;
+    }
+
+        public String randomPencil(){
+            int nombreAleatoire = random.nextInt(8) + 1;
+            switch (nombreAleatoire) {
+                case 1:
+                    return "BLUE";
+                case 2:
+                    return "CYAN";
+                case 3:
+                    return "GREEN";
+                case 4:
+                    return "MAGENTA";
+                case 5:
+                    return "ORANGE";
+                case 6:
+                    return "PINK";
+                case 7:
+                    return "RED";
+                case 8:
+                    return "YELLOW";
+                default:
+                    return "BLUE";
+            }
+        }
 }
 

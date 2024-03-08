@@ -1,9 +1,14 @@
 import java.awt.Color;
 import java.util.Scanner;
+import java.util.Random;
 
 class ColorBlock{
 
-    Block[][] tab;
+    final static int NBTOURS = 10;
+    static Random random = new Random();
+
+    public Block[][] tab;
+
 
     public ColorBlock(int size, String[][] result){
         this.tab = new Block[size+1][size+1];
@@ -114,5 +119,78 @@ class ColorBlock{
     public Block getBlock(int x,int y){
         return this.tab[y][x];
     }
+
+
+    //lvl aléatoire 
+
+    public ColorBlock(){
+        
+
+        String[][] lvtest = new String[][] {{"YELLOW", "ORANGE", "ORANGE","ORANGE"},
+        {"YELLOW", "RED", "GREEN","RED"},
+        {"YELLOW", "RED", "RED","MAGENTA"},
+        {"YELLOW","RED","GREEN","RED"}};
+
+        ColorBlock lvlgen = new ColorBlock(3, lvtest);
+
+        for(int i = 0; i<NBTOURS ;i++){
+            lvlgen.randomPlay();
+        }
+
+        this.tab = lvlgen.tab;
+
+
+    }
+
+    public void randomPlay(){
+        int nombreAleatoire = random.nextInt(2) + 1;
+        int idx =random.nextInt(2);
+        switch(nombreAleatoire) {
+            case 1:
+                this.changeColumnColor(this.tab[3][idx].getColor(),idx);
+                break;
+            case 2:
+                this.changeLineColor(this.tab[idx][3].getColor(), idx );
+        }
+    }
+
+    public String randomPencil(){
+        int nombreAleatoire = random.nextInt(8) + 1;
+        switch (nombreAleatoire) {
+            case 1:
+                return "BLUE";
+            case 2:
+                return "CYAN";
+            case 3:
+                return "GREEN";
+            case 4:
+                return "MAGENTA";
+            case 5:
+                return "ORANGE";
+            case 6:
+                return "PINK";
+            case 7:
+                return "RED";
+            case 8:
+                return "YELLOW";
+            default:
+                return "BLUE";
+        }
+    }
+
+    public String[][] rdStrings(){
+        String[][] lvl = new String[4][4];
+        for(int i = 0; i< 4; i++){
+            for(int i2 = 0; i2<4;i++){
+                if(i2 == lvl[i].length-1 || i == lvl.length-1 ){
+                    lvl[i][i2] = "RED";
+                }else{
+                    lvl[i][i2] = "RED";
+                }
+            }    
+        }
+        return lvl;
+    }
+
 
 }
