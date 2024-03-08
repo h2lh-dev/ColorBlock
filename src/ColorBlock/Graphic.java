@@ -1,12 +1,10 @@
+package ColorBlock;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Random;
 
 
@@ -35,14 +33,11 @@ public class Graphic extends JFrame {
         counterLabel = new JLabel("" + cptTours);
             counterLabel.setBounds(383, 10, 100, 30); 
 
-            // Initialisation de la carte (exemple avec une carte simple)
-            try {
-                lvl = fileToTab("res/lvl" +(cptlvl+1)+".csv");
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
             
-            lvl = rdStrings();
+
+            map = new ColorBlock();
+
+            lvl = map.colorBlockToTab();
 
             map = new ColorBlock(3,lvl);
 
@@ -94,12 +89,10 @@ public class Graphic extends JFrame {
     }
 
     public void changelvl(){
-        try {
-            lvl = fileToTab("res/lvl" +(cptlvl+1)+".csv");
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        map = new ColorBlock();
+
+        lvl = map.colorBlockToTab();
 
         map = new ColorBlock(3,lvl);
         
@@ -150,21 +143,6 @@ public class Graphic extends JFrame {
         return button;
     }
 
-    public static String[][] fileToTab(String csvFilePath) throws IOException {
-        List<String[]> csvData = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Diviser la ligne en tableau de chaînes en utilisant la virgule comme séparateur
-                String[] row = line.split(",");
-                csvData.add(row);
-            }
-        }
-
-        return csvData.toArray(new String[0][0]);
-    }
-
     private void updateCounterLabel() {
         counterLabel.setText(""+cptTours);
     }
@@ -190,7 +168,7 @@ public class Graphic extends JFrame {
             case "CYAN":
                 return Color.CYAN;
             default:
-                return Color.CYAN;
+                return Color.RED;
         }
     }
 
@@ -216,45 +194,5 @@ public class Graphic extends JFrame {
         }
         
     }
-
-    public String[][] rdStrings(){
-        String[][] lvl = new String[4][4];
-        for(int i = 0; i< 4; i++){
-            System.out.println("test");
-            for(int i2 = 0; i2< 4 ;i2++){
-                System.out.println("test2");
-                if(i2 == lvl[i].length-1 || i == lvl.length-1 ){
-                    lvl[i][i2] = randomPencil();
-                }else{
-                    lvl[i][i2] = "RED";
-                }
-            }    
-        }
-        return lvl;
-    }
-
-        public String randomPencil(){
-            int nombreAleatoire = random.nextInt(8) + 1;
-            switch (nombreAleatoire) {
-                case 1:
-                    return "BLUE";
-                case 2:
-                    return "CYAN";
-                case 3:
-                    return "GREEN";
-                case 4:
-                    return "MAGENTA";
-                case 5:
-                    return "ORANGE";
-                case 6:
-                    return "PINK";
-                case 7:
-                    return "RED";
-                case 8:
-                    return "YELLOW";
-                default:
-                    return "BLUE";
-            }
-        }
 }
 

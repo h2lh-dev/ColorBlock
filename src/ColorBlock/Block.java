@@ -1,3 +1,4 @@
+package ColorBlock;
 import java.awt.Color;
 
 class Block {
@@ -50,27 +51,24 @@ class Block {
 
     public String getColorName() {
         // Compare la couleur avec les constantes prédéfinies de Color
-        if (this.color.equals(Color.RED)) {
-            return "RED";
-        } else if (this.color.equals(Color.GREEN)) {
-            return "GREEN";
-        } else if (this.color.equals(Color.BLUE)) {
+        if (this.color.equals(Color.BLUE)) {
             return "BLUE";
-        } else if (this.color.equals(Color.YELLOW)) {
-            return "YELLOW";
         } else if (this.color.equals(Color.CYAN)) {
             return "CYAN";
+        } else if (this.color.equals(Color.GREEN)) {
+            return "GREEN";
         } else if (this.color.equals(Color.MAGENTA)) {
             return "MAGENTA";
         } else if (this.color.equals(Color.ORANGE)) {
             return "ORANGE";
         } else if (this.color.equals(Color.PINK)) {
             return "PINK";
-        } else if (this.color.equals(Color.GRAY)) {
-            return "GRAY";
-        } 
-        else {
-            return "UNKNOWN";
+        } else if (this.color.equals(Color.RED)) {
+            return "RED";
+        } else if (this.color.equals(Color.YELLOW)) {
+            return "YELLOW";
+        } else {
+            return "RED";
         }
     }
       

@@ -1,3 +1,4 @@
+package ColorBlock;
 
 import javax.swing.SwingUtilities;
 

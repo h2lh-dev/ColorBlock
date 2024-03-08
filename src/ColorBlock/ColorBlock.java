@@ -1,10 +1,11 @@
+package ColorBlock;
 import java.awt.Color;
 import java.util.Scanner;
 import java.util.Random;
 
 class ColorBlock{
 
-    final static int NBTOURS = 10;
+    final static int NBTOURS = 50;
     static Random random = new Random();
 
     public Block[][] tab;
@@ -124,33 +125,24 @@ class ColorBlock{
     //lvl aléatoire 
 
     public ColorBlock(){
-        
-
-        String[][] lvtest = new String[][] {{"YELLOW", "ORANGE", "ORANGE","ORANGE"},
-        {"YELLOW", "RED", "GREEN","RED"},
-        {"YELLOW", "RED", "RED","MAGENTA"},
-        {"YELLOW","RED","GREEN","RED"}};
-
-        ColorBlock lvlgen = new ColorBlock(3, lvtest);
-
+        ColorBlock lvlgen = new ColorBlock(3, rdStrings());
+        System.out.println(lvlgen.tab[2][2].getColorName());
         for(int i = 0; i<NBTOURS ;i++){
             lvlgen.randomPlay();
         }
-
         this.tab = lvlgen.tab;
-
-
     }
 
     public void randomPlay(){
         int nombreAleatoire = random.nextInt(2) + 1;
-        int idx =random.nextInt(2);
+        int idx =random.nextInt(3);
+        System.out.println(idx);
         switch(nombreAleatoire) {
             case 1:
                 this.changeColumnColor(this.tab[3][idx].getColor(),idx);
                 break;
             case 2:
-                this.changeLineColor(this.tab[idx][3].getColor(), idx );
+                this.changeLineColor(this.tab[idx][3].getColor(),idx);
         }
     }
 
@@ -181,13 +173,25 @@ class ColorBlock{
     public String[][] rdStrings(){
         String[][] lvl = new String[4][4];
         for(int i = 0; i< 4; i++){
-            for(int i2 = 0; i2<4;i++){
+            System.out.println("test");
+            for(int i2 = 0; i2< 4 ;i2++){
+                System.out.println("test2");
                 if(i2 == lvl[i].length-1 || i == lvl.length-1 ){
-                    lvl[i][i2] = "RED";
+                    lvl[i][i2] = randomPencil();
                 }else{
                     lvl[i][i2] = "RED";
                 }
             }    
+        }
+        return lvl;
+    }
+
+    public String[][] colorBlockToTab(){
+        String[][] lvl = new String[4][4];
+        for(int i = 0; i< 4; i++){
+            for(int i2 = 0; i2< 4 ;i2++){
+                lvl[i][i2] = this.tab[i][i2].getColorName();
+            }
         }
         return lvl;
     }

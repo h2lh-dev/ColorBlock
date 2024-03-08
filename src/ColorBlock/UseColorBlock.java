@@ -1,3 +1,4 @@
+package ColorBlock;
 public class UseColorBlock {
     
     public static void main(String[] args){
